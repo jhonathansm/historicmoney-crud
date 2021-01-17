@@ -6,4 +6,5 @@ import com.example.algamoneyapi.model.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
+	Pessoa findByCodigo(Long codigo);
 }
