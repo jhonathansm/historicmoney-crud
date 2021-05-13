@@ -1,7 +1,6 @@
 package com.example.algamoneyapi.resource;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,9 +43,9 @@ public class PessoaResource {
 	}
 	
 	@GetMapping("/{codigo}")
-	public ResponseEntity<Optional<Pessoa>> listaPessoaId(@PathVariable Long codigo) {
-		Optional<Pessoa> pessoa = pessoaRepository.findById(codigo);
-		return pessoa.isEmpty() != true ? ResponseEntity.ok(pessoa) : ResponseEntity.notFound().build();
+	public ResponseEntity<Pessoa> listaPessoaId(@PathVariable Long codigo) {
+		Pessoa pessoa = pessoaRepository.findByCodigo(codigo);
+		return pessoa != null ? ResponseEntity.ok(pessoa) : ResponseEntity.notFound().build();
 		
 	}
 	
@@ -66,5 +66,11 @@ public class PessoaResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void atualizarPropriedadeAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo) {
 		pessoaService.atualizarPropridadeAtivo(codigo, ativo);
+	}
+	
+	@DeleteMapping("/{codigo}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void remover(@PathVariable Long codigo) {
+		pessoaRepository.deleteById(codigo);
 	}
 }

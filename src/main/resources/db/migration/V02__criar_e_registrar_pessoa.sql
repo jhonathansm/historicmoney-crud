@@ -10,7 +10,7 @@ CREATE TABLE pessoa(
     cep VARCHAR(10),
     cidade VARCHAR(20),
     estado VARCHAR(30)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO pessoa (nome, ativo, logradouro, numero, complemento, bairro, cep, cidade, estado) values ('Jhonathan', true, 'rua friedrich von voith', '1700', 'lt1', 'jaragua', '02995000', 'São Paulo', 'SP');
 INSERT INTO pessoa (nome, ativo, logradouro, numero, complemento, bairro, cep, cidade, estado) values ('Julio', true, 'rua joão pessoa', '17', 'casa', 'pessoa', '02972000', 'São Paulo', 'SP');
